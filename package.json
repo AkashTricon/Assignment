@@ -1,0 +1,30 @@
+{
+  "name": "assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 10000 test/unit/ --recursive",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkashTricon/Assignment.git"
+  },
+  "author": "akash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AkashTricon/Assignment/issues"
+  },
+  "homepage": "https://github.com/AkashTricon/Assignment#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "express": "^4.16.4",
+    "mocha": "^5.2.0",
+    "mongodb": "^3.1.10",
+    "mongoose": "^5.3.16",
+    "sinon": "^7.2.1",
+    "supertest": "^3.3.0"
+  }
+}
