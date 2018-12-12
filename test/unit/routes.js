@@ -13,6 +13,7 @@ var testContact = {
 }
 
 var updatedTestData= {
+    _id: "5c10af1dd1a0880560b68769",
     name: "akshay",
     email: "plivo@gmail.com",
     address: "HAL"
@@ -31,7 +32,8 @@ describe('## 1. Tests for creating Contact book app', () => {
         .post('/v1/contacts')
         .send({
             name: "akash",
-            email: "akash@plivo.com"
+            email: "akash@plivo.com",
+            token: "testToken"
             }
         )
         .then(res => {
@@ -51,7 +53,7 @@ describe('## 1. Tests for creating Contact book app', () => {
     });
     it('Should return get contact by contactId', done => {
       server
-        .get('/v1/contacts/5c10af1dd1a0880560b68769')
+        .get('/v1/contacts/5c10af1dd1a0880560b68769?token=testToken')
         .then(res => {
             expect(res.status).to.equal(200);
           })
@@ -69,7 +71,7 @@ describe('## 1. Tests for creating Contact book app', () => {
     });
     it('Should return get contact by name', done => {
       server
-        .get('/v1/contacts/name/akash')
+        .get('/v1/contacts/name/akash?token=testToken')
         .then(res => {
             expect(res.status).to.equal(200);
           })
@@ -87,7 +89,7 @@ describe('## 1. Tests for creating Contact book app', () => {
     });
     it('Should return get contact by email', done => {
       server
-        .get('/v1/contacts/email/akash@gmail.com')
+        .get('/v1/contacts/email/akash@gmail.com?token=testToken')
         .then(res => {
             expect(res.status).to.equal(200);
           })
@@ -105,7 +107,7 @@ describe('## 1. Tests for creating Contact book app', () => {
     });
     it('Should return success', done => {
       server
-        .get('/v1/contacts')
+        .get('/v1/contacts?token=testToken')
         .then(res => {
             expect(res.status).to.equal(200);
           })
@@ -122,7 +124,7 @@ describe('## 1. Tests for creating Contact book app', () => {
     });
     it('Should return success for  deleting contact', done => {
       server
-        .get('/v1/contacts')
+        .get('/v1/contacts/5c10af1dd1a0880560b68769?token=testToken')
         .then(res => {
             expect(res.status).to.equal(200);
           })
@@ -133,14 +135,14 @@ describe('## 1. Tests for creating Contact book app', () => {
   describe('## 1. Tests for update contact by Id', () => {
     beforeEach(() => {
         sinon.stub(contactModel.contactModel, 'update')
-        contactModel.contactModel.update.withArgs({_id: testContact._id},updatedTestData).yieldsAsync(null,null)
+        contactModel.contactModel.update.withArgs({_id: testContact._id},updatedTestData).yieldsAsync(null,updatedTestData)
     });
     afterEach(() => {
         contactModel.contactModel.update.restore();
     });
     it('Should return success for  deleting contact', done => {
       server
-        .get('/v1/contacts')
+        .get('/v1/contacts/5c10af1dd1a0880560b68769?token=testToken')
         .then(res => {
             expect(res.status).to.equal(200);
           })
